@@ -135,7 +135,7 @@ const game = {
     },
 
     playNote(slot) { this.playTone(NOTES[this.playerSequence[slot]].freq, 0.6); },
-    gameOver() { clearInterval(this.timerInt); this.showResultModal("FAIL", "TRY AGAIN", false); },
+    gameOver() { clearInterval(this.timerInt); this.showResultModal("GAME OVER", "TRY AGAIN", false); },
 
     showResultModal(title, val, isWin) {
         const modal = document.getElementById('overlay-layer');
