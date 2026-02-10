@@ -85,7 +85,6 @@ body {
     text-align: center;
 }
 
-/* LISTEN CAREFULLY SECTION ENLARGED */
 .status-text-massive {
     font-family: 'Luckiest Guy';
     font-size: 5rem;
@@ -97,13 +96,11 @@ body {
 .sequence-visual-wide {
     display: flex;
     gap: 120px;
-    /* Much wider spacing between circles */
     margin-top: 20px;
 }
 
 .note-dot-massive {
     width: 110px;
-    /* Larger circles */
     height: 110px;
     border-radius: 50%;
     border: 8px solid rgba(255, 255, 255, 0.15);
@@ -117,7 +114,6 @@ body {
     transform: scale(1.4);
 }
 
-/* REST OF THE UI */
 .menu-actions {
     display: flex;
     flex-direction: column;
@@ -341,23 +337,4 @@ body {
     border-radius: 20px;
     cursor: pointer;
     box-shadow: 0 8px 0 #9e0d1b;
-}
-
-.debug-controls {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    display: flex;
-    gap: 8px;
-    z-index: 9999;
-}
-
-.debug-btn {
-    background: #333;
-    color: #fff;
-    border: 1px solid #555;
-    padding: 4px 8px;
-    cursor: pointer;
-    opacity: 0.4;
-    font-size: 11px;
 }

@@ -14,7 +14,7 @@
 <body>
 
     <div id="menu-screen" class="screen active">
-        <h1 class="game-title">MATCH THE PITCH</h1>
+        <h1 class="game-title">SEQUENCE MATCH</h1>
         <div class="menu-actions">
             <button class="btn-play" onclick="game.showNamePrompt()">START GAME</button>
             <div class="leaderboard-container">
@@ -107,12 +107,6 @@
                 <button class="btn-continue" onclick="game.backToMenu()">CONTINUE</button>
             </div>
         </div>
-    </div>
-
-    <div class="debug-controls">
-        <button class="debug-btn" onclick="game.showResultModal('MATCH!', '12.45', true)">W</button>
-        <button class="debug-btn" onclick="game.showResultModal('FAIL', 'TRY AGAIN', false)">L</button>
-        <button class="debug-btn" onclick="game.skipMemo()">SKIP MEMO</button>
     </div>
 
     <script src="script.js"></script>

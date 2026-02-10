@@ -25,8 +25,6 @@ const game = {
         this.startMemorization();
     },
 
-    skipMemo() { this.memoRunning = false; this.startCountdown(); },
-
     async startMemorization() {
         if (!this.audioCtx) this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         this.targetSequence = Array.from({length: 3}, () => Math.floor(Math.random() * NOTES.length));
@@ -35,7 +33,6 @@ const game = {
         document.getElementById('memorize-screen').classList.add('active');
         this.memoRunning = true;
 
-        // FIXED: 2 SECOND DELAY BEFORE MUSIC
         await new Promise(r => setTimeout(r, 2000));
 
         for (let loop = 0; loop < 3; loop++) {
@@ -44,7 +41,7 @@ const game = {
                 if (!this.memoRunning) break;
                 this.setDot(i);
                 this.playTone(NOTES[this.targetSequence[i]].freq, 0.6);
-                await new Promise(r => setTimeout(r, 900)); // Slower playback
+                await new Promise(r => setTimeout(r, 900));
             }
             this.setDot(-1);
             if (loop < 2 && this.memoRunning) await new Promise(r => setTimeout(r, 2000));
@@ -52,7 +49,6 @@ const game = {
         if (this.memoRunning) this.startCountdown();
     },
 
-    // Updated for massive dots
     setDot(idx) { document.querySelectorAll('.note-dot-massive').forEach((d, i) => d.classList.toggle('active', i === idx)); },
 
     startCountdown() {
@@ -103,7 +99,6 @@ const game = {
         const isWin = this.playerSequence.every((v, i) => v === this.targetSequence[i]);
         if (isWin) {
             clearInterval(this.timerInt);
-            // REAL TIME CALCULATION
             const score = (30 - this.timeLeft).toFixed(2);
             await _supabase.from('sequence_leaderboard').insert([{ name: this.playerName, score: parseFloat(score) }]);
             this.showResultModal("MATCH!", score, true);
