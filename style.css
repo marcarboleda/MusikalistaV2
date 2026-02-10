@@ -1,0 +1,363 @@
+:root {
+    --sonic-blue: #0054b4;
+    --sonic-yellow: #fcd116;
+    --sonic-red: #e6192e;
+    --bg-dark: #120d09;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg-dark);
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    height: 100vh;
+    overflow: hidden;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes shake {
+    0% {
+        transform: translate(1px, 1px) rotate(0deg);
+    }
+
+    10% {
+        transform: translate(-3px, 0px) rotate(1deg);
+    }
+
+    30% {
+        transform: translate(3px, 2px) rotate(0deg);
+    }
+
+    50% {
+        transform: translate(-1px, 2px) rotate(-1deg);
+    }
+
+    70% {
+        transform: translate(3px, 1px) rotate(-1deg);
+    }
+
+    100% {
+        transform: translate(1px, -2px) rotate(-1deg);
+    }
+}
+
+.shake {
+    animation: shake 0.4s;
+}
+
+.screen {
+    display: none;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.screen.active {
+    display: flex;
+}
+
+.game-title {
+    font-family: 'Luckiest Guy';
+    font-size: 7rem;
+    text-shadow: 6px 6px 0 var(--sonic-red);
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+/* LISTEN CAREFULLY SECTION ENLARGED */
+.status-text-massive {
+    font-family: 'Luckiest Guy';
+    font-size: 5rem;
+    color: white;
+    margin-bottom: 60px;
+    text-shadow: 4px 4px 0 var(--sonic-blue);
+}
+
+.sequence-visual-wide {
+    display: flex;
+    gap: 120px;
+    /* Much wider spacing between circles */
+    margin-top: 20px;
+}
+
+.note-dot-massive {
+    width: 110px;
+    /* Larger circles */
+    height: 110px;
+    border-radius: 50%;
+    border: 8px solid rgba(255, 255, 255, 0.15);
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.note-dot-massive.active {
+    background: var(--sonic-yellow);
+    border-color: white;
+    box-shadow: 0 0 60px var(--sonic-yellow), inset 0 0 20px white;
+    transform: scale(1.4);
+}
+
+/* REST OF THE UI */
+.menu-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
+.highscore-board {
+    background: rgba(0, 0, 0, 0.7);
+    border: 4px solid var(--sonic-yellow);
+    padding: 30px 50px;
+    border-radius: 25px;
+    min-width: 500px;
+    text-align: center;
+}
+
+.highscore-board .label {
+    font-family: 'Luckiest Guy';
+    color: var(--sonic-yellow);
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.arena {
+    display: flex;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.pitch-zone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.tag-centered {
+    font-family: 'Luckiest Guy';
+    font-size: 1.8rem;
+    color: var(--sonic-yellow);
+}
+
+.card {
+    width: 240px;
+    height: 280px;
+    background: #111;
+    border: 10px solid var(--sonic-blue);
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 15px 0 rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+}
+
+.hz-readout span {
+    font-family: 'Luckiest Guy';
+    font-size: 5rem;
+    color: var(--sonic-blue);
+}
+
+.horizontal-tuner {
+    display: flex;
+    gap: 20px;
+}
+
+.tune-btn {
+    width: 85px;
+    height: 85px;
+    border: none;
+    border-radius: 22px;
+    background: var(--sonic-blue);
+    color: white;
+    font-family: 'Luckiest Guy';
+    font-size: 3.5rem;
+    cursor: pointer;
+    box-shadow: 0 6px 0 #003a7d;
+}
+
+#countdown-text {
+    font-family: 'Luckiest Guy';
+    font-size: 8rem;
+    color: white;
+    text-shadow: 0 10px 0 var(--sonic-blue);
+    animation: pulse 0.5s infinite;
+}
+
+.btn-play,
+.btn-match-massive {
+    background: var(--sonic-blue);
+    color: white;
+    font-family: 'Luckiest Guy';
+    font-size: 2.8rem;
+    padding: 18px 70px;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 10px 0 #003a7d;
+}
+
+.btn-match-massive {
+    background: var(--sonic-yellow);
+    color: #222;
+    box-shadow: 0 10px 0 #b39200;
+    margin-top: 40px;
+}
+
+.btn-exit-sleek {
+    background: var(--sonic-red);
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 15px;
+    font-family: 'Luckiest Guy';
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 5px 0 #9e0d1b;
+}
+
+.hud {
+    position: absolute;
+    top: 40px;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.timer-display {
+    background: white;
+    color: var(--sonic-red);
+    padding: 10px 30px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.timer-display span {
+    font-family: 'Luckiest Guy';
+    font-size: 4rem;
+    display: block;
+    line-height: 1;
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.result-box {
+    background: white;
+    width: 500px;
+    border-radius: 30px;
+    border: 8px solid var(--sonic-yellow);
+    text-align: center;
+    overflow: hidden;
+}
+
+.result-header {
+    background: var(--sonic-blue);
+    color: white;
+    padding: 25px;
+    font-family: 'Luckiest Guy';
+    font-size: 2.5rem;
+}
+
+.result-body {
+    padding: 40px;
+    color: #222;
+}
+
+#start-player-name {
+    width: 100%;
+    padding: 15px;
+    font-family: 'Luckiest Guy';
+    font-size: 2.2rem;
+    text-align: center;
+    border: 5px solid var(--sonic-blue);
+    border-radius: 20px;
+    margin-bottom: 25px;
+    outline: none;
+}
+
+.btn-go {
+    width: 100%;
+    background: var(--sonic-blue);
+    color: white;
+    font-family: 'Luckiest Guy';
+    font-size: 2.5rem;
+    padding: 15px;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    box-shadow: 0 8px 0 #003a7d;
+}
+
+#modal-msg-value {
+    font-family: 'Luckiest Guy';
+    font-size: 6rem;
+    color: var(--sonic-blue);
+}
+
+.hero-box.fail-state #modal-msg-value {
+    color: var(--sonic-red);
+    font-size: 3rem;
+}
+
+.btn-continue {
+    width: 100%;
+    background: var(--sonic-red);
+    color: white;
+    font-family: 'Luckiest Guy';
+    font-size: 2.5rem;
+    padding: 15px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0 8px 0 #9e0d1b;
+}
+
+.debug-controls {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    gap: 8px;
+    z-index: 9999;
+}
+
+.debug-btn {
+    background: #333;
+    color: #fff;
+    border: 1px solid #555;
+    padding: 4px 8px;
+    cursor: pointer;
+    opacity: 0.4;
+    font-size: 11px;
+}

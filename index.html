@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sequence Match - Pro Edition</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Montserrat:wght@900&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+
+    <div id="menu-screen" class="screen active">
+        <h1 class="game-title">MATCH THE PITCH</h1>
+        <div class="menu-actions">
+            <button class="btn-play" onclick="game.showNamePrompt()">START GAME</button>
+            <div class="leaderboard-container">
+                <div class="highscore-board">
+                    <span class="label">LEADERBOARDS</span>
+                    <div id="menu-best" class="value-list">LOADING...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="name-prompt-overlay" class="modal-overlay">
+        <div class="result-box">
+            <div class="result-header">NEW CHALLENGER!</div>
+            <div class="result-body">
+                <p style="margin-bottom: 15px; font-family: 'Luckiest Guy'; font-size: 1.2rem;">ENTER PLAYER NAME:</p>
+                <input type="text" id="start-player-name" placeholder="ABC..." maxlength="10">
+                <button class="btn-go" onclick="game.confirmName()">GO!</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="memorize-screen" class="screen">
+        <h2 class="status-text-massive">LISTEN CAREFULLY...</h2>
+        <div class="sequence-visual-wide">
+            <div class="note-dot-massive" id="dot-0"></div>
+            <div class="note-dot-massive" id="dot-1"></div>
+            <div class="note-dot-massive" id="dot-2"></div>
+        </div>
+    </div>
+
+    <div id="countdown-overlay" class="modal-overlay">
+        <div id="countdown-text">3</div>
+    </div>
+
+    <div id="game-screen" class="screen">
+        <div class="hud">
+            <button class="btn-exit-sleek" onclick="game.exit()">EXIT</button>
+            <div class="timer-display">
+                <small>TIME</small>
+                <span id="countdown">30</span>
+            </div>
+        </div>
+
+        <div class="arena">
+            <div class="pitch-zone">
+                <div class="tag-centered">NOTE 1</div>
+                <div class="card player-card" id="card-0" onclick="game.playNote(0)">
+                    <div class="hz-readout"><span id="note-0-name">C4</span></div>
+                </div>
+                <div class="horizontal-tuner">
+                    <button class="tune-btn" onclick="game.adjust(0, -1)">−</button>
+                    <button class="tune-btn" onclick="game.adjust(0, 1)">+</button>
+                </div>
+            </div>
+            <div class="pitch-zone">
+                <div class="tag-centered">NOTE 2</div>
+                <div class="card player-card" id="card-1" onclick="game.playNote(1)">
+                    <div class="hz-readout"><span id="note-1-name">C4</span></div>
+                </div>
+                <div class="horizontal-tuner">
+                    <button class="tune-btn" onclick="game.adjust(1, -1)">−</button>
+                    <button class="tune-btn" onclick="game.adjust(1, 1)">+</button>
+                </div>
+            </div>
+            <div class="pitch-zone">
+                <div class="tag-centered">NOTE 3</div>
+                <div class="card player-card" id="card-2" onclick="game.playNote(2)">
+                    <div class="hz-readout"><span id="note-2-name">C4</span></div>
+                </div>
+                <div class="horizontal-tuner">
+                    <button class="tune-btn" onclick="game.adjust(2, -1)">−</button>
+                    <button class="tune-btn" onclick="game.adjust(2, 1)">+</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-center">
+            <button id="match-trigger" class="btn-match-massive" onclick="game.checkSequence()">MATCH SEQUENCE</button>
+        </div>
+    </div>
+
+    <div id="overlay-layer" class="modal-overlay">
+        <div class="result-box hero-box">
+            <div class="result-header" id="modal-title">MATCH!</div>
+            <div class="result-body">
+                <div id="modal-msg-container">
+                    <span id="modal-msg-value">0.00</span><small id="modal-msg-unit">s</small>
+                </div>
+                <button class="btn-continue" onclick="game.backToMenu()">CONTINUE</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="debug-controls">
+        <button class="debug-btn" onclick="game.showResultModal('MATCH!', '12.45', true)">W</button>
+        <button class="debug-btn" onclick="game.showResultModal('FAIL', 'TRY AGAIN', false)">L</button>
+        <button class="debug-btn" onclick="game.skipMemo()">SKIP MEMO</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
